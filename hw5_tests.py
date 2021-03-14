@@ -39,9 +39,10 @@ class TestCard(unittest.TestCase):
         ### please note: normally unit test methods do not have return statements. But returning will allow for unit testing of your unit test, and allow you to check your answer with the autograder.  This is optional today.
 
         '''
-        c = hw5_cards.Card(0, 12)
-        X = self.assertEqual(c.rank, 12)
-        Y = self.assertEqual(c.rank_name, "Queen")
+        c1 = hw5_cards.Card(0, 12)
+        self.assertEqual(c1.rank_name, "Queen")
+        X = c1.rank_name
+        Y = "Queen"
         return X, Y
 
     def test_q2(self):
@@ -56,9 +57,10 @@ class TestCard(unittest.TestCase):
         ### please note: normally unit test methods do not have return statements. But returning will allow for unit testing of your unit test, and allow you to check your answer with the autograder.  This is optional today.
 
         '''
-        c = hw5_cards.Card(1, 12)
-        X = self.assertEqual(c.suit, 1)
-        Y = self.assertEqual(c.suit_name, "Clubs")
+        c1 = hw5_cards.Card(1, 12)
+        self.assertEqual(c1.suit_name, "Clubs")
+        X = c1.suit_name
+        Y = "Clubs"
         return X, Y
 
 
@@ -76,8 +78,10 @@ class TestCard(unittest.TestCase):
 
         '''
         c = hw5_cards.Card(3, 13)
-        X = self.assertEqual(str(c), "King of Spades")
-        return X
+        self.assertEqual(str(c), "King of Spades")
+        X = str(c)
+        Y = "King of Spades"
+        return X, Y
 
     def test_q4(self):
         '''
@@ -93,8 +97,10 @@ class TestCard(unittest.TestCase):
         '''
         d = hw5_cards.Deck()
         n = d.cards
-        X = self.assertEqual(len(n), 52)
-        return X
+        self.assertEqual(len(n), 52)
+        X = len(n)
+        Y = 52
+        return X, Y
 
     def test_q5(self):
         '''
@@ -109,9 +115,13 @@ class TestCard(unittest.TestCase):
 
         '''
         d = hw5_cards.Deck()
-        n = d.deal_card()
-        X = self.assertIsInstance(n, Card)
-        return X
+        c1 = d.deal_card()
+        c2 = hw5_cards.Card()
+        self.assertIsInstance(c1, type(c2))
+        # self.assertTrue(isinstance(c1, Card))
+        X = c1
+        Y = type(c2)
+        return X, Y
 
     def test_q6(self):
         '''
@@ -127,11 +137,13 @@ class TestCard(unittest.TestCase):
 
         '''
         d = hw5_cards.Deck()
-        n1 = d.cards
+        n1 = len(d.cards)
         d.deal_card()
-        n2 = d.cards
-        X = self.assertEqual(n2, n1 - 1)
-        return X
+        n2 = len(d.cards)
+        self.assertEqual(n2, n1 - 1)
+        X = n2
+        Y = n1 - 1
+        return X, Y
 
 
     def test_q7(self):
@@ -148,12 +160,15 @@ class TestCard(unittest.TestCase):
 
         '''
         d = hw5_cards.Deck()
+        X = len(d.cards)
         c = d.deal_card()
         n1 = len(d.cards)
         d.replace_card(c)
         n2 = len(d.cards)
-        X = self.assertEqual(n2, n1 + 1)
-        return X
+        self.assertEqual(n2, n1 + 1)
+        Y = n2
+        Z = n1 + 1
+        return X, Y, Z
 
     def test_q8(self):
         '''
@@ -173,8 +188,10 @@ class TestCard(unittest.TestCase):
         c = hw5_cards.Card(0, 2)
         d.replace_card(c)
         n2 = len(d.cards)
-        X = self.assertEqual(n1, n2)
-        return X
+        self.assertEqual(n1, n2)
+        X = n1
+        Y = n2
+        return X, Y
 
 
 
